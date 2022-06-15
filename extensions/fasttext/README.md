@@ -17,7 +17,7 @@ Current implementation has the following limitations:
 
 ## Documentation
 
-The latest javadocs can be found on the [djl.ai website](https://javadoc.io/doc/ai.djl.fasttext/fasttext-engine/latest/index.html).
+The latest javadocs can be found on [here](https://javadoc.io/doc/ai.djl.fasttext/fasttext-engine/latest/index.html).
 
 You can also build the latest javadocs locally using the following command:
 
@@ -34,7 +34,7 @@ You can pull the fastText engine from the central Maven repository by including 
 <dependency>
     <groupId>ai.djl.fasttext</groupId>
     <artifactId>fasttext-engine</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
 </dependency>
 ```
 

@@ -17,7 +17,7 @@ User can only create two-dimension NDArray to form as the input.
 
 ## Documentation
 
-The latest javadocs can be found on the [djl.ai website](https://javadoc.io/doc/ai.djl.onnxruntime/onnxruntime-engine/latest/index.html).
+The latest javadocs can be found on [here](https://javadoc.io/doc/ai.djl.onnxruntime/onnxruntime-engine/latest/index.html).
 
 You can also build the latest javadocs locally using the following command:
 
@@ -37,13 +37,13 @@ XGBoost can only run on top of the Linux/Mac machine. User can build from source
 ## Installation
 You can pull the XGBoost engine from the central Maven repository by including the following dependency:
 
-- ai.djl.ml.xgboost:xgboost:0.16.0
+- ai.djl.ml.xgboost:xgboost:0.17.0
 
 ```xml
 <dependency>
     <groupId>ai.djl.ml.xgboost</groupId>
     <artifactId>xgboost</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
     <scope>runtime</scope>
 </dependency>
 ```

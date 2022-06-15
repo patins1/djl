@@ -28,7 +28,7 @@ For example, adding MXNet engine dependencies:
 Gradle:
 
 ```
-implementation "ai.djl.mxnet:mxnet-engine:0.16.0"
+implementation "ai.djl.mxnet:mxnet-engine:0.17.0"
 // See https://github.com/deepjavalibrary/djl/blob/master/engines/mxnet/mxnet-engine/README.md for more MXNet library selection options
 runtimeOnly "ai.djl.mxnet:mxnet-native-auto:1.8.0"
 ```
@@ -232,7 +232,7 @@ No X11 DISPLAY variable was set, but this program performed an operation which r
 java.awt.HeadlessException:
 ```
 
-Follow the [steps here](https://github.com/aws-samples/d2l-java/blob/master/documentation/troubleshoot.md) to resolve it.
+Follow the [steps here](https://github.com/deepjavalibrary/d2l-java/blob/master/documentation/troubleshoot.md) to resolve it.
 
 
 ## 10. JVM crash

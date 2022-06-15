@@ -6,7 +6,7 @@ The model zoo contains symbolic models from Apache MXNet (incubating) that can b
 
 ## Documentation
 
-The latest javadocs can be found on the [djl.ai website](https://javadoc.io/doc/ai.djl.mxnet/mxnet-model-zoo/latest/index.html).
+The latest javadocs can be found on [here](https://javadoc.io/doc/ai.djl.mxnet/mxnet-model-zoo/latest/index.html).
 
 You can also build the latest javadocs locally using the following command:
 
@@ -27,7 +27,7 @@ You can pull the MXNet engine from the central Maven repository by including the
 <dependency>
     <groupId>ai.djl.mxnet</groupId>
     <artifactId>mxnet-model-zoo</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
 </dependency>
 ```
 

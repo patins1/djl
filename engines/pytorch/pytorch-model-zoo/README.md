@@ -5,7 +5,7 @@ All the models in this model zoo contain pre-trained parameters for their specif
 
 ## Documentation
 
-The latest javadocs can be found on the [djl.ai website](https://javadoc.io/doc/ai.djl.pytorch/pytorch-model-zoo/latest/index.html).
+The latest javadocs can be found on [here](https://javadoc.io/doc/ai.djl.pytorch/pytorch-model-zoo/latest/index.html).
 
 You can also build the latest javadocs locally using the following command:
 
@@ -25,7 +25,7 @@ You can pull the PyTorch engine from the central Maven repository by including t
 <dependency>
     <groupId>ai.djl.pytorch</groupId>
     <artifactId>pytorch-model-zoo</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
 </dependency>
 ```
 

@@ -324,9 +324,13 @@ public final class JniUtils {
     }
 
     public static PtNDArray index(
-            PtNDArray ndArray, long[] minIndices, long[] maxIndices, long[] stepIndices) {
+            PtNDArray ndArray,
+            long[] minIndices,
+            long[] maxIndices,
+            long[] stepIndices,
+            PtNDManager manager) {
         return new PtNDArray(
-                ndArray.getManager(),
+                manager,
                 PyTorchLibrary.LIB.torchIndex(
                         ndArray.getHandle(), minIndices, maxIndices, stepIndices));
     }
@@ -347,9 +351,21 @@ public final class JniUtils {
     }
 
     public static PtNDArray gather(PtNDArray ndArray, PtNDArray index, long dim) {
+        if (index.getDataType() != DataType.INT64) {
+            index = index.toType(DataType.INT64, true);
+        }
         return new PtNDArray(
                 ndArray.getManager(),
                 PyTorchLibrary.LIB.torchGather(ndArray.getHandle(), index.getHandle(), dim, false));
+    }
+
+    public static PtNDArray take(PtNDArray ndArray, PtNDArray index) {
+        if (index.getDataType() != DataType.INT64) {
+            index = index.toType(DataType.INT64, true);
+        }
+        return new PtNDArray(
+                ndArray.getManager(),
+                PyTorchLibrary.LIB.torchTake(ndArray.getHandle(), index.getHandle()));
     }
 
     public static PtNDArray pick(PtNDArray ndArray, PtNDArray index, long dim) {
@@ -401,18 +417,16 @@ public final class JniUtils {
                 ndArray.getHandle(), value.getHandle(), indicesNd.getHandle());
     }
 
-    public static PtNDArray getItem(PtNDArray ndArray, long[] indices) {
+    public static PtNDArray getItem(PtNDArray ndArray, long[] indices, PtNDManager manager) {
         // use a specialized API here
         // due to significant performance gain
         // for commonly used data loading call
         if (indices.length == 1) {
             return new PtNDArray(
-                    ndArray.getManager(),
-                    PyTorchLibrary.LIB.torchGetItem(ndArray.getHandle(), indices[0]));
+                    manager, PyTorchLibrary.LIB.torchGetItem(ndArray.getHandle(), indices[0]));
         }
         return new PtNDArray(
-                ndArray.getManager(),
-                PyTorchLibrary.LIB.torchGetItem(ndArray.getHandle(), indices));
+                manager, PyTorchLibrary.LIB.torchGetItem(ndArray.getHandle(), indices));
     }
 
     public static PtNDArray clone(PtNDArray ndArray) {

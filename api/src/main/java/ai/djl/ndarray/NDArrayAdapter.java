@@ -80,8 +80,8 @@ public abstract class NDArrayAdapter implements NDArray {
     /** {@inheritDoc} */
     @Override
     public void tempAttach(NDManager manager) {
-        detach();
         NDManager original = this.manager;
+        detach();
         this.manager = manager;
         manager.tempAttachInternal(original, getUid(), this);
     }
@@ -179,6 +179,12 @@ public abstract class NDArrayAdapter implements NDArray {
     /** {@inheritDoc} */
     @Override
     public NDArray gather(NDArray index, int axis) {
+        throw new UnsupportedOperationException(UNSUPPORTED_MSG);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public NDArray take(NDArray index) {
         throw new UnsupportedOperationException(UNSUPPORTED_MSG);
     }
 

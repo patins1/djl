@@ -16,7 +16,7 @@ For more information, see [Hybrid Engine](../../../docs/hybrid_engine.md).
 
 ## Documentation
 
-The latest javadocs can be found on the [djl.ai website](https://javadoc.io/doc/ai.djl.dlr/dlr-engine/latest/index.html).
+The latest javadocs can be found on [here](https://javadoc.io/doc/ai.djl.dlr/dlr-engine/latest/index.html).
 
 You can also build the latest javadocs locally using the following command:
 
@@ -29,13 +29,13 @@ The javadocs output is generated in the `build/doc/javadoc` folder.
 ## Installation
 You can pull the DLR engine from the central Maven repository by including the following dependency:
 
-- ai.djl.dlr:dlr-engine:0.16.0
+- ai.djl.dlr:dlr-engine:0.17.0
 
 ```xml
 <dependency>
     <groupId>ai.djl.dlr</groupId>
     <artifactId>dlr-engine</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
     <scope>runtime</scope>
 </dependency>
 ```

@@ -15,7 +15,7 @@ This module contains the core API of the Deep Java Library (DJL) project. It inc
 
 ## Documentation
 
-The latest javadocs can be found on the [djl.ai website](https://javadoc.io/doc/ai.djl/api/latest/index.html).
+The latest javadocs can be found on [here](https://javadoc.io/doc/ai.djl/api/latest/index.html).
 
 You can also build the latest javadocs locally using the following command:
 
@@ -35,7 +35,7 @@ You can pull the DJL API from the central Maven repository by including the foll
 <dependency>
     <groupId>ai.djl</groupId>
     <artifactId>api</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
 </dependency>
 ```
 
@@ -45,7 +45,7 @@ For testing the current nightly build, use the following:
 <dependency>
     <groupId>ai.djl</groupId>
     <artifactId>api</artifactId>
-    <version>0.17.0-SNAPSHOT</version>
+    <version>0.18.0-SNAPSHOT</version>
 </dependency>
 ```
 
