@@ -414,4 +414,14 @@ public abstract class AbstractBaseBlock implements Block {
             }
         }
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public Shape[] getInputShapes() {
+        if (!isInitialized()) {
+            throw new IllegalStateException(
+                    "getInputShapes() can only be called after the initialization process");
+        }
+        return inputShapes;
+    }
 }
