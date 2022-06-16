@@ -13,6 +13,8 @@
 package ai.djl.util;
 
 import ai.djl.ndarray.NDArray;
+import ai.djl.ndarray.types.Shape;
+import ai.djl.nn.Block;
 import ai.djl.nn.Parameter;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -33,6 +35,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.slf4j.Logger;
 
 /** A class containing utility methods. */
@@ -350,5 +353,37 @@ public final class Utils {
             }
         }
         return Paths.get(cacheDir);
+    }
+
+    /**
+     * Returns a string representation of the passed {@link Block} describing the input axes, output
+     * axes, and the block's children.
+     *
+     * @param block the block to describe
+     * @param blockName the name to be used for the passed block, or <code>null</code> if its class
+     *     name is to be used
+     * @param beginAxis skips all axes before this axis; use <code>0</code> to print all axes and
+     *     <code>1</code> to skip the batch axis.
+     * @return the string representation
+     */
+    public static String desribe(Block block, String blockName, int beginAxis) {
+        Shape[] inputShapes = block.getInputShapes();
+        Shape[] outputShapes = block.getOutputShapes(inputShapes);
+        StringBuilder sb = new StringBuilder(200);
+        sb.append(blockName != null ? blockName : block.getClass().getSimpleName());
+        sb.append(
+                Stream.of(inputShapes)
+                        .map(shape -> shape.slice(beginAxis).toString())
+                        .collect(Collectors.joining("+")));
+        if (!block.getChildren().isEmpty()) {
+            sb.append(" {\n");
+            for (Pair<String, Block> pair : block.getChildren()) {
+                String child = desribe(pair.getValue(), pair.getKey().substring(2), beginAxis);
+                sb.append(child.replaceAll("(?m)^", "\t")).append('\n');
+            }
+            sb.append('}');
+        }
+        sb.append(" -> " + outputShapes[0].slice(beginAxis));
+        return sb.toString();
     }
 }
