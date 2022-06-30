@@ -120,10 +120,27 @@ public class NDIndexTest {
             Assert.assertEquals(original.get(bool), expected);
 
             // get from int array
-            original = manager.arange(1, 7f).reshape(-1, 3);
-            NDArray index = manager.create(new long[] {0, 4, 1, 2}, new Shape(2, 2));
+            original = manager.arange(1, 7f).reshape(-1, 2);
+            NDArray index = manager.create(new long[] {0, 0, 1, 2}, new Shape(2, 2));
             NDArray actual = original.get(index);
-            expected = manager.create(new float[] {1, 5, 2, 3}, new Shape(2, 2));
+            expected = manager.create(new float[] {1, 2, 1, 2, 3, 4, 5, 6}, new Shape(2, 2, 2));
+            Assert.assertEquals(actual, expected);
+
+            // indexing with boolean, broadcast int array and slice
+            original = manager.arange(3 * 3 * 3 * 3).reshape(3, 3, 3, 3);
+            NDArray bool1 = manager.create(new boolean[] {true, false, true});
+            NDArray index1 = manager.create(new long[] {2, 2}, new Shape(1, 2));
+            NDArray index2 = manager.create(new long[] {0, 1}, new Shape(1, 2));
+            actual = original.get(":{}, {}, {}, {}", 2, index1, bool1, index2);
+            expected = manager.create(new int[] {18, 25, 45, 52}, new Shape(2, 1, 2));
+            Assert.assertEquals(actual, expected);
+
+            // indexing with null, broadcast int array and slice
+            original = manager.arange(3 * 3 * 3).reshape(3, 3, 3);
+            index1 = manager.create(new long[] {0, 1}, new Shape(2));
+            index2 = manager.create(new long[] {0, 0, 2, 1}, new Shape(2, 2));
+            actual = original.get(":{}, {}, {}, {}", 2, index1, index2, null);
+            expected = manager.create(new int[] {0, 3, 2, 4, 9, 12, 11, 13}, new Shape(2, 2, 2, 1));
             Assert.assertEquals(actual, expected);
         }
     }
@@ -209,6 +226,17 @@ public class NDIndexTest {
             original.set(new NDIndex(":, 0::2"), array -> array.mul(-1).add(1));
             NDArray expected = manager.create(new float[][] {{0, 1, 0, 1, 0}});
             Assert.assertEquals(original, expected);
+        }
+    }
+
+    @Test
+    public void testPut() {
+        try (NDManager manager = NDManager.newBaseManager()) {
+            NDArray original = manager.create(new float[] {1, 2, 3, 4}, new Shape(2, 2));
+            NDArray expected = manager.create(new float[] {1, 8, 666, 77}, new Shape(2, 2));
+            NDArray idx = manager.create(new long[] {2, 3, 1}, new Shape(3));
+            NDArray data = manager.create(new float[] {666, 77, 8}, new Shape(3));
+            Assert.assertEquals(original.put(idx, data), expected);
         }
     }
 }
